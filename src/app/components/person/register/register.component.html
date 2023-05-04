@@ -1,0 +1,30 @@
+
+<mat-card>
+    <mat-card-header>
+        <h1>Registrera ny användare</h1>
+    </mat-card-header>
+    <mat-card-content>
+<form class="form" [formGroup]=" registerForm" (ngSubmit)=" registerUser(this.registerForm.value)">
+    <mat-form-field class="full-width">
+      <mat-label>Namn</mat-label>
+      <input type = "text" matInput formControlName = "firstName">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Efternamn</mat-label>
+      <input type="text" matInput formControlName = "lastName">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName = "userName">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Lösenord</mat-label>
+      <input type="password" matInput formControlName = "password">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary">Registrera</button>
+      <a routerLink="/login" mat-raised-button color="accent">Tillbacka</a>
+    </div>
+  </form>
+</mat-card-content>
+</mat-card>

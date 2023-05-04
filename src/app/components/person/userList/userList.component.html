@@ -1,0 +1,22 @@
+
+<mat-card>
+   <mat-card-content>
+<table class="full-width">
+    <thead>
+         <th>Namn</th>
+        <th>Efternamn</th>
+        <th>Email</th>
+        <th>Role</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of persons">
+        
+        <td>{{ person.firstName}}</td>
+        <td>{{ person.lastName}}</td>
+        <td>{{ person.userName}}</td>
+        <td>{{ person.personRole}}</td>
+    </tr>
+    </tbody>
+</table>
+</mat-card-content>   
+</mat-card>
