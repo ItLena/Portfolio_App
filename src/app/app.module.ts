@@ -6,12 +6,17 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './components/person/register/register.component';
 import { LoginComponent } from './components/person/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserListComponent } from './components/person/userList/userList.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { UserListComponent } from './components/person/userList/userList.compone
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    UserListComponent
+    UserListComponent,
+    AdminComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,14 @@ import { UserListComponent } from './components/person/userList/userList.compone
     HttpClientModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },
+  { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+  JwtHelperService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,7 @@ import { PersonService } from 'src/app/services/person.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './userList.component.html',
-  styleUrls: ['./userList.component.scss']
+  styleUrls: ['./userList.component.scss'],
 })
 export class UserListComponent {
 

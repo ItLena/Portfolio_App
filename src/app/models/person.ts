@@ -7,3 +7,8 @@ export class Person {
     id?: number;
 
 }
+
+export class Login{
+    userName?: string | null;
+    password?: string | null;
+}

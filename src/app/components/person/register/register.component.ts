@@ -8,7 +8,7 @@ import { Person } from 'src/app/models/person';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],  
 })
 export class RegisterComponent {
 

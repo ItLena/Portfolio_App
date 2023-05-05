@@ -16,10 +16,11 @@ export class PersonService {
     return this.http.post<Person[]>(this.apiUrl +'/register', person )
   }
 
-  getUserById(person: Person){
-    return this.http.get(this.apiUrl + '/'+ person.id)
+  getUserById(person: Person) :Observable<Person[]>{
+    return this.http.get<Person[]>(this.apiUrl + '/'+ person.id)
   }
 
+  
   getAll() : Observable<Person[]>{
     return this.http.get<Person[]>(this.apiUrl + '/getAll')
   }
