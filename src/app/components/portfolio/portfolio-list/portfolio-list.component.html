@@ -1,0 +1,23 @@
+
+<mat-card>
+    <mat-card-content>
+ <table  >
+     <thead>
+         <th>Namn</th>
+         <th>Datum</th>
+         <th>Email</th>
+         <th>Role</th>
+         <th></th>
+     </thead>
+     <tbody>
+       <tr *ngFor="let portfolio of portfolio">         
+         <td>{{ portfolio.name}}</td>
+         <td>{{ portfolio.dateCreated}}</td>
+         <td>{{ portfolio.benchmarkDescription}}</td>
+         <td>{{ portfolio.personName }}</td>
+         <td><a routerLink="/portfolios/{{portfolio.id}}"><mat-icon>chevron_right</mat-icon></a></td>
+     </tr>
+     </tbody>
+ </table>
+ </mat-card-content>   
+ </mat-card>

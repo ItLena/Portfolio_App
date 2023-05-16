@@ -1,0 +1,10 @@
+<mat-card *ngIf="portfolio">
+    <mat-card-content>
+      
+        <mat-list>{{portfolio.name}}</mat-list>
+        <mat-list>{{portfolio.benchmarkDescription}}</mat-list>
+        <mat-list>{{portfolio.dateCreated}}</mat-list>
+        <mat-list *ngIf="portfolio.dateDelited != null">{{portfolio.dateDelited}}</mat-list>
+   
+    </mat-card-content>
+</mat-card>

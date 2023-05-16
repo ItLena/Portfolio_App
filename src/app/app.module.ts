@@ -16,6 +16,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { PortfolioListComponent } from './components/portfolio/portfolio-list/portfolio-list.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     HomeComponent,
     UserListComponent,
     AdminComponent,
-    NavbarComponent
+    NavbarComponent,    
+    PortfolioDetailsComponent,
+    SideNavComponent,
+    PortfolioListComponent
   ],
   imports: [
     BrowserModule,

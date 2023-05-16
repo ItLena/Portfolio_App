@@ -1,0 +1,15 @@
+.chevron-button.rotated {
+    transform: rotate(180deg);
+}
+
+.chevron-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+}
+
+span{
+    display: flex;  
+}
+h3{
+    margin-left: 10px;
+}

@@ -10,7 +10,7 @@ export class PersonService {
 
   constructor(private http:HttpClient) { }
 
-  apiUrl = 'https://localhost:7059/api/person'
+  apiUrl = 'https://localhost:7059/api/Person'
 
   createUser(person: Person):Observable<Person[]>{
     return this.http.post<Person[]>(this.apiUrl +'/register', person )

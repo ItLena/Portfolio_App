@@ -1,9 +1,15 @@
 
-<!-- Toolbar -->
-<app-navbar></app-navbar>
+<app-navbar ></app-navbar>
 
+<mat-sidenav-container autosize > 
+<app-side-nav></app-side-nav>
 <div class="content">
+ <router-outlet></router-outlet>
 
-  <router-outlet></router-outlet>
+</div>
 
-  </div>
+
+</mat-sidenav-container>
+   
+
+

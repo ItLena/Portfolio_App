@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,9 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent {
 
-  constructor( private router: Router, private service: AuthService){}
+  
+  constructor(private router: Router, private service: AuthService){}
 
   logout(){
     this.service.logOut();
   }
+
+ 
+
 }
