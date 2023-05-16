@@ -11,6 +11,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class PortfolioDetailsComponent {
   
   portfolio: any = Portfolio ;
+  
   constructor( private portfolioService: PortfolioService, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void{

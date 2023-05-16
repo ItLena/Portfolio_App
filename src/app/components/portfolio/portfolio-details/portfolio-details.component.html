@@ -1,10 +1,19 @@
 <mat-card *ngIf="portfolio">
     <mat-card-content>
-      
-        <mat-list>{{portfolio.name}}</mat-list>
-        <mat-list>{{portfolio.benchmarkDescription}}</mat-list>
-        <mat-list>{{portfolio.dateCreated}}</mat-list>
-        <mat-list *ngIf="portfolio.dateDelited != null">{{portfolio.dateDelited}}</mat-list>
-   
+      <mat-list>
+        <mat-list-item>
+            <span matListItemTitle>Portföljnamn</span>
+            <span matListItemLine>{{portfolio.name}}</span>
+        </mat-list-item>
+        <mat-list-item>
+            <span matListItemTitle>Portföljnamn</span>
+            <span matListItemLine>  {{portfolio.benchmarkDescription}}</span>          
+        </mat-list-item>
+        <mat-list-item>
+            <span matListItemTitle>Portföljnamn</span>
+            <span matListItemLine> {{portfolio.dateCreated | date}}</span>
+           
+        </mat-list-item>       
+   </mat-list>
     </mat-card-content>
 </mat-card>

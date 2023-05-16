@@ -1,22 +1,32 @@
+<table mat-table [dataSource]="persons" class="mat-elevation-z8">     
 
-<mat-card>
-   <mat-card-content>
-<table class="full-width">
-    <thead>
-         <th>Namn</th>
-        <th>Efternamn</th>
-        <th>Email</th>
-        <th>Role</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let person of persons">
-        
-        <td>{{ person.firstName}}</td>
-        <td>{{ person.lastName}}</td>
-        <td>{{ person.userName}}</td>
-        <td>{{ person.personRole}}</td>
-    </tr>
-    </tbody>
-</table>
-</mat-card-content>   
-</mat-card>
+    <ng-container matColumnDef="Namn">
+      <th mat-header-cell *matHeaderCellDef> Namn </th>
+      <td mat-cell *matCellDef="let persons"> {{persons.firstName}} </td>
+    </ng-container>  
+
+    <ng-container matColumnDef="Efternamn">
+      <th mat-header-cell *matHeaderCellDef> Efternamn </th>
+      <td mat-cell *matCellDef="let persons"> {{persons.lastName}} </td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="Epost">
+      <th mat-header-cell *matHeaderCellDef> Epost </th>
+      <td mat-cell *matCellDef="let persons"> {{persons.userName}} </td>
+    </ng-container>  
+   
+    <ng-container matColumnDef="Roll">
+      <th mat-header-cell *matHeaderCellDef> Roll </th>
+      <td mat-cell *matCellDef="let persons"> {{persons.personRole}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Redigera">
+        <th mat-header-cell *matHeaderCellDef> Redigera </th>
+        <td mat-cell *matCellDef="let persons">
+            <button mat-icon-button color="primary" matTooltip="Redigera anvendarensinfo"><mat-icon >edit</mat-icon></button>
+            <button mat-icon-button color="warn" matTooltip="Radera användare"><mat-icon >delete</mat-icon></button>
+        </td>
+    </ng-container>    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

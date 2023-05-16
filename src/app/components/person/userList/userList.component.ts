@@ -10,6 +10,7 @@ import { PersonService } from 'src/app/services/person.service';
 export class UserListComponent {
 
   persons: Person[] = [];
+  displayedColumns: string[] = ['Namn', 'Efternamn', 'Epost', 'Roll', 'Redigera'];
   constructor( private personService: PersonService) {}
 
   ngOnInit(): void{

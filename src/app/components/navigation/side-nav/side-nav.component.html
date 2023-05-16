@@ -1,11 +1,17 @@
 
 <mat-sidenav #sidenav mode="side" opened = "isExpanded">
 <mat-nav-list>
-    <mat-list-item (click)="isExpanded = !isExpanded">
-        <button mat-icon-button color="primary">  
-        <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
-        </button>  
+    <mat-list-item (click)="isExpanded = !isExpanded">        
+        <mat-icon color="primary" class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>     
     </mat-list-item>
+
+    <mat-list-item routerLink='/home'>
+        <span>
+        <mat-icon color="primary">home</mat-icon>
+        <h3 *ngIf="isExpanded">Hem</h3>
+    </span>
+    </mat-list-item >
+
     <mat-list-item routerLink='/users'>
         <span>
         <mat-icon color="primary">group</mat-icon>

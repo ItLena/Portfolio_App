@@ -16,6 +16,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -43,6 +44,7 @@ import {MatListModule} from '@angular/material/list';
     MatRadioModule,
     MatToolbarModule,
     MatListModule,
+    MatTooltipModule,
     
   ]
 })

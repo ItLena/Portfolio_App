@@ -12,12 +12,12 @@ import { RegisterComponent } from './components/person/register/register.compone
 import { LoginComponent } from './components/person/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserListComponent } from './components/person/userList/userList.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { SideNavComponent } from './components/navigation/side-nav/side-nav.component';
 import { PortfolioListComponent } from './components/portfolio/portfolio-list/portfolio-list.component';
 
 
@@ -28,7 +28,6 @@ import { PortfolioListComponent } from './components/portfolio/portfolio-list/po
     LoginComponent,
     HomeComponent,
     UserListComponent,
-    AdminComponent,
     NavbarComponent,    
     PortfolioDetailsComponent,
     SideNavComponent,
