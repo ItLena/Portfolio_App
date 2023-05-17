@@ -25,8 +25,8 @@ export class PersonService {
     return this.http.get<Person[]>(this.apiUrl + '/getAll')
   }
 
-  updateUser(person: Person) : Observable<Person[]>{
-    return this.http.put<Person[]>(this.apiUrl + '/' + person.id, person)
+  updateUser(id: any, person: Person) : Observable<Person[]>{
+    return this.http.put<Person[]>(this.apiUrl + '/' + id, person)
   }
 
   deleteUser(person: Person) : Observable<Person[]>{

@@ -1,6 +1,6 @@
-<mat-card *ngIf="portfolio">
+<mat-card >
     <mat-card-content>
-      <mat-list>
+      <mat-list *ngIf="portfolio">
         <mat-list-item>
             <span matListItemTitle>Portföljnamn</span>
             <span matListItemLine>{{portfolio.name}}</span>
@@ -17,3 +17,42 @@
    </mat-list>
     </mat-card-content>
 </mat-card>
+<mat-divider></mat-divider>
+<table mat-table [dataSource]="position" class="mat-elevation-z8"> 
+
+    <ng-container matColumnDef="Värdepaperstyp">
+      <th mat-header-cell *matHeaderCellDef>Värdepaperstyp </th>
+      <td mat-cell *matCellDef="let position"> {{position.instrumentType}} </td>
+    </ng-container>  
+
+    <ng-container matColumnDef="Företagsnamn">
+      <th mat-header-cell *matHeaderCellDef> Företagsnamn </th>
+      <td mat-cell *matCellDef="let position"> {{position.instrumentName}} </td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="Innehav">
+      <th mat-header-cell *matHeaderCellDef> Innehav </th>
+      <td mat-cell *matCellDef="let position"> {{position.quantity}} </td>
+    </ng-container>  
+   
+    <ng-container matColumnDef="Värde">
+      <th mat-header-cell *matHeaderCellDef> Värde </th>
+      <td mat-cell *matCellDef="let position"> {{position.totalValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Datum">
+        <th mat-header-cell *matHeaderCellDef> Datum </th>
+        <td mat-cell *matCellDef="let position"> {{position.date | date}} </td>
+      </ng-container>
+    <ng-container matColumnDef="Agera">
+        <th mat-header-cell *matHeaderCellDef>Transaktioner</th>
+        <td mat-cell *matCellDef="let persons">          
+            <button mat-raised-button color="primary" style="margin-right: 10px">Köpa</button>
+            <button mat-raised-button color="accent" >Sälja</button>
+       
+        </td>
+    </ng-container>    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

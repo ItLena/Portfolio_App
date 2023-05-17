@@ -9,3 +9,13 @@ export class Portfolio {
     benchmarkDescription? : string | null;
 
 }
+
+export class Position {
+    id?: number | null;
+    instrumentName?: string | null;
+    instrumentType?: string | null 
+    totalValue?: number | null;
+    date?: string | null;
+    quantity? : number | null;
+
+}

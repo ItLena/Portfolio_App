@@ -22,7 +22,7 @@
     <ng-container matColumnDef="Redigera">
         <th mat-header-cell *matHeaderCellDef> Redigera </th>
         <td mat-cell *matCellDef="let persons">
-            <button mat-icon-button color="primary" matTooltip="Redigera anvendarensinfo"><mat-icon >edit</mat-icon></button>
+            <button mat-icon-button color="accent" matTooltip="Redigera anvendarensinfo" (click)="editUser(persons.id)"><mat-icon >edit</mat-icon></button>
             <button mat-icon-button color="warn" matTooltip="Radera användare"><mat-icon >delete</mat-icon></button>
         </td>
     </ng-container>    

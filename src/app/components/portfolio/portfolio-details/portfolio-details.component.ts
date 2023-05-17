@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Portfolio } from 'src/app/models/portfolio';
+import { Portfolio, Position } from 'src/app/models/portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { PositionService } from 'src/app/services/position.service';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -11,8 +12,13 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class PortfolioDetailsComponent {
   
   portfolio: any = Portfolio ;
+  position: any = Position;
+  displayedColumns: string[] = ['Värdepaperstyp', 'Företagsnamn', 'Innehav', 'Värde', 'Datum', 'Agera'];
   
-  constructor( private portfolioService: PortfolioService, private activeRoute: ActivatedRoute) {}
+  constructor( 
+    private portfolioService: PortfolioService,
+     private activeRoute: ActivatedRoute, 
+     private positionService: PositionService) {}
 
   ngOnInit(): void{
    
@@ -23,5 +29,13 @@ export class PortfolioDetailsComponent {
       this.portfolio = result
       console.log(this.portfolio)
     })  
+
+    this.positionService.getPositionsByPortfolioId(id)
+    .subscribe(result=> {
+      this.position = result
+      console.log(this.position)
+    }
+    )
+
   }
 }
