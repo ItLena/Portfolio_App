@@ -8,21 +8,21 @@
     <mat-list-item routerLink='/home'>
         <span>
         <mat-icon >home</mat-icon>
-        <h3 *ngIf="isExpanded">Hem</h3>
+        <h5 *ngIf="isExpanded">Hem</h5>
     </span>
     </mat-list-item >
 
     <mat-list-item routerLink='/users'>
         <span>
-        <mat-icon >group</mat-icon>
-        <h3 *ngIf="isExpanded">Användare</h3>
+        <mat-icon>group</mat-icon>
+        <h5 *ngIf="isExpanded">Användare</h5>
     </span>
     </mat-list-item >
 
     <mat-list-item  routerLink='/portfolios'>
         <span>
-        <mat-icon >cases</mat-icon>
-      <h3 *ngIf="isExpanded" >Portfolios</h3>
+        <mat-icon>cases</mat-icon>
+      <h5 *ngIf="isExpanded" >Portfolios</h5>
     </span>
     </mat-list-item>
 </mat-nav-list>

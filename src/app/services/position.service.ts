@@ -13,8 +13,8 @@ export class PositionService {
   apiUrl = 'https://localhost:7059/api/Position'
 
   
-  getPositionsByPortfolioId(id: any) :Observable<Position>{
-    return this.http.get<Position>(this.apiUrl + '/positions?portfolioId=' + id)
+  getPositionsByPortfolioId(id: any) :Observable<Position[]>{
+    return this.http.get<Position[]>(this.apiUrl + '/positions?portfolioId=' + id)
   }
 
 

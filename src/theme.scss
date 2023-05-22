@@ -3,10 +3,12 @@
 @include mat-core();
 
 
-$my-primary: mat-palette($mat-purple);
-$my-accent: mat-palette($mat-green, 700);
+$my-primary: mat-palette($mat-purple, 400);
+$my-accent: mat-palette($mat-light-green, 700);
 
 
 
-$my-theme: mat-dark-theme($my-primary, $my-accent);
+$my-theme: mat-light-theme(
+    $my-primary, $my-accent);
+
 @include angular-material-theme($my-theme);

@@ -1,0 +1,19 @@
+button:hover{
+    background-color: #ab47bc;
+    color: white;
+  }
+  
+  mat-list-item {
+    display: flex;  
+
+    b{
+      margin-right: 5px;
+    }
+  }
+  mat-list-item:hover{
+    // background-color: 
+    border-radius: 10px;
+    border: 1px solid #eeedee;
+  }
+
+ 

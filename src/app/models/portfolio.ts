@@ -1,4 +1,3 @@
-import { formatDate } from "@angular/common";
 
 export class Portfolio {
     id?: number | null;
@@ -7,7 +6,8 @@ export class Portfolio {
     dateDeleted?: string | null;
     personName?: string | null;
     benchmarkDescription? : string | null;
-
+    portfolioValue?: number | null;
+    lastUpdated?: string | null;
 }
 
 export class Position {
@@ -16,6 +16,5 @@ export class Position {
     instrumentType?: string | null 
     totalValue?: number | null;
     date?: string | null;
-    quantity? : number | null;
-
+    quantity? : number | null;  
 }
