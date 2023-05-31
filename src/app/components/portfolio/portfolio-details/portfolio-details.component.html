@@ -1,72 +1,110 @@
-<mat-card >
- 
-  <mat-card-content style="display: flex; flex-direction: row; justify-content: space-around;">
-  <mat-list *ngIf="portfolio" style="width: 500px">
-    <mat-list-item>
-      <b>Portfölj:</b>
-      <span>{{portfolio.name}}</span>
-    </mat-list-item>    
-    <mat-list-item>
-      <b>Skapad: </b>
-      <span> {{portfolio.dateCreated | date}}</span>
-    </mat-list-item>
-    <mat-list-item>
-      <b>Sist uppdaterad: </b>
-      <span> {{portfolio.lastUpdated | date}}</span>
-    </mat-list-item>
- 
-    <mat-list-item>
-      <b>Värde, SEK: </b>
-      <span> {{portfolio.portfolioValue}}</span>
-    </mat-list-item>
-   
-  <mat-list-item>
-    <b>Benchmark: </b>
-    <span> {{portfolio.benchmarkDescription}}</span>
-  </mat-list-item> 
-</mat-list>
-  <div style="width: 250px">
-    <canvas id="myChart">{{chart}}</canvas>
-  </div></mat-card-content>
-</mat-card>
+<div class="grid-container">
+  <div class="grid-item">    
+    <section class="portfolio">
+      <h3>Portföljo: {{portfolio.name}}</h3>
+      <mat-card>
+        <mat-card-content class="tile-box">
+          <span >
+            <b>Skapad: </b>
+            <p> {{portfolio.dateCreated | date}}</p>
+          </span>
+          <span >
+            <b>Sist uppdaterad: </b>
+            <p> {{portfolio.lastUpdated | date}}</p>
+          </span>
+          <span >
+            <b>Värde, SEK: </b>
+            <p> {{portfolio.portfolioValue}}</p>
+          </span>
+          <span >
+            <b>Benchmark: </b>
+            <p> {{portfolio.benchmarkDescription}}</p>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </section>
 
-<h2>Innehav</h2>
+    <section class="actie">
+      <h3>Innehav</h3>
+      <table mat-table [dataSource]="positions" class="mat-elevation-z2">
+        <ng-container matColumnDef="Värdepaperstyp">
+          <th mat-header-cell *matHeaderCellDef>Värdepaperstyp </th>
+          <td mat-cell *matCellDef="let position"> {{position.instrumentType}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Företagsnamn">
+          <th mat-header-cell *matHeaderCellDef> Företagsnamn </th>
+          <td mat-cell *matCellDef="let position"> {{position.instrumentName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Innehav">
+          <th mat-header-cell *matHeaderCellDef> Innehav </th>
+          <td mat-cell *matCellDef="let position"> {{position.quantity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Värde">
+          <th mat-header-cell *matHeaderCellDef> Värde, SEK </th>
+          <td mat-cell *matCellDef="let position"> {{position.totalValue}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Datum">
+          <th mat-header-cell *matHeaderCellDef> Datum </th>
+          <td mat-cell *matCellDef="let position"> {{position.date | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Agera">
+          <th mat-header-cell *matHeaderCellDef>Transaktioner</th>
+          <td mat-cell *matCellDef="let persons">
+            <button mat-flat-link color="accent" style="margin-right: 5px">Köpa</button>
+            <button mat-flat-link color="accent">Sälja</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </section>
 
-<table mat-table [dataSource]="positions" class="mat-elevation-z8">
+    <section class="risk">
+      <h3>Risker</h3>
+      <mat-card>
+        <mat-card-content class="tile-box">
+          <span >
+            <b>År: </b>
+            <p>{{risk.year}}</p>
+          </span>
+          <span >
+            <b>Dagar: </b>
+            <p>{{risk.ammountDays}} </p>
+          </span>
+          <span >
+            <b>P avvikelse: </b>
+            <p>{{risk.sDforPortfolio}}</p>
+          </span>
+          <span >
+            <b>BM avvikelse: </b>
+            <p>{{risk.sDforBenchmark}}</p>
+          </span>
+          <span >
+            <b>Tracking error: </b>
+            <p>{{risk.trackingError}} </p>
+          </span>
+          <span class="data-span">
+            <b>Ratio: </b>
+            <p>{{risk.ratio}} </p>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </section>
 
-  <ng-container matColumnDef="Värdepaperstyp">
-    <th mat-header-cell *matHeaderCellDef>Värdepaperstyp </th>
-    <td mat-cell *matCellDef="let position"> {{position.instrumentType}} </td>
-  </ng-container>
+    <section class="performance">
+      <h3>Performance</h3>
+      <mat-card style="margin-top: 10px">
+        <div style="width: auto">
+          <canvas id="performanceChart">{{performanceChart}}</canvas>
+        </div>
+      </mat-card>
+    </section>
+  </div>
 
-  <ng-container matColumnDef="Företagsnamn">
-    <th mat-header-cell *matHeaderCellDef> Företagsnamn </th>
-    <td mat-cell *matCellDef="let position"> {{position.instrumentName}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Innehav">
-    <th mat-header-cell *matHeaderCellDef> Innehav </th>
-    <td mat-cell *matCellDef="let position"> {{position.quantity}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Värde">
-    <th mat-header-cell *matHeaderCellDef> Värde </th>
-    <td mat-cell *matCellDef="let position"> {{position.totalValue}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Datum">
-    <th mat-header-cell *matHeaderCellDef> Datum </th>
-    <td mat-cell *matCellDef="let position"> {{position.date | date}} </td>
-  </ng-container>
-  <ng-container matColumnDef="Agera">
-    <th mat-header-cell *matHeaderCellDef>Transaktioner</th>
-    <td mat-cell *matCellDef="let persons">
-      <button mat-stroked-button color="primary" style="margin-right: 10px">Köpa</button>
-      <button mat-stroked-button color="primary">Sälja</button>
-
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <div class="grid-item">
+    <section>
+      <h3 style="text-align: center;">Tillgångsfördelning</h3>
+      <canvas id="positionChart">{{positionChart}}</canvas>
+    </section>
+  </div>
+</div>

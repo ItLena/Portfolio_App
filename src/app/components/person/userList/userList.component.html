@@ -1,32 +1,43 @@
-<table mat-table [dataSource]="persons" class="mat-elevation-z8">     
+<div style="margin-bottom: 5px; display: flex; justify-content: end;">
+  <button mat-raised-button color="accent" (click)="addUser()">
+    <mat-icon>add</mat-icon>
+    Ny användare
+  </button>
+</div>
+<table mat-table [dataSource]="persons" class="mat-elevation-z8">
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let persons"> {{persons.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Namn">
+    <th mat-header-cell *matHeaderCellDef> Namn </th>
+    <td mat-cell *matCellDef="let persons"> {{persons.firstName}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Namn">
-      <th mat-header-cell *matHeaderCellDef> Namn </th>
-      <td mat-cell *matCellDef="let persons"> {{persons.firstName}} </td>
-    </ng-container>  
+  <ng-container matColumnDef="Efternamn">
+    <th mat-header-cell *matHeaderCellDef> Efternamn </th>
+    <td mat-cell *matCellDef="let persons"> {{persons.lastName}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Efternamn">
-      <th mat-header-cell *matHeaderCellDef> Efternamn </th>
-      <td mat-cell *matCellDef="let persons"> {{persons.lastName}} </td>
-    </ng-container>
- 
-    <ng-container matColumnDef="Epost">
-      <th mat-header-cell *matHeaderCellDef> Epost </th>
-      <td mat-cell *matCellDef="let persons"> {{persons.userName}} </td>
-    </ng-container>  
-   
-    <ng-container matColumnDef="Roll">
-      <th mat-header-cell *matHeaderCellDef> Roll </th>
-      <td mat-cell *matCellDef="let persons"> {{persons.personRole}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Redigera">
-        <th mat-header-cell *matHeaderCellDef> Redigera </th>
-        <td mat-cell *matCellDef="let persons">
-            <button mat-icon-button color="accent" matTooltip="Redigera anvendarensinfo" (click)="editUser(persons.id)"><mat-icon >edit</mat-icon></button>
-            <button mat-icon-button color="warn" matTooltip="Radera användare"><mat-icon >delete</mat-icon></button>
-        </td>
-    </ng-container>    
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <ng-container matColumnDef="Epost">
+    <th mat-header-cell *matHeaderCellDef> Epost </th>
+    <td mat-cell *matCellDef="let persons"> {{persons.userName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Roll">
+    <th mat-header-cell *matHeaderCellDef> Roll </th>
+    <td mat-cell *matCellDef="let persons"> {{persons.personRole}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Redigera">
+    <th mat-header-cell *matHeaderCellDef> Redigera </th>
+    <td mat-cell *matCellDef="let persons">
+      <button mat-icon-button color="accent" matTooltip="Redigera anvendarensinfo"
+      (click)="editUser(persons.id)"><mat-icon >edit</mat-icon></button>
+      <button mat-icon-button color="warn" matTooltip="Radera användare"><mat-icon>delete</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

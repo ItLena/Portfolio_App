@@ -11,10 +11,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss'], 
 })
 export class LoginComponent {
-
-  userData: any;
+ 
+  
   constructor(private builder: FormBuilder, private toastr: ToastrService,
-    private service: AuthService, private router: Router) {
+    private authService: AuthService, 
+    private router: Router) {
   }
 
   loginForm = this.builder.group({
@@ -24,12 +25,14 @@ export class LoginComponent {
 
   login() {
     const data = this.loginForm.value;
-    data.userName && data.password ? this.service.login(data).subscribe((token: string) => {   
-      this.service.storeToken(token)
-        this.toastr.success('Inloggning har lyckats!');
-        this.router.navigate(['home'])     
+    data.userName && data.password ? this.authService.login(data).subscribe((token: any) => {   
+      this.authService.storeToken(token)
+       this.toastr.success('Inloggning har lyckats!');             
+       let userRole = this.authService.hasRole()
+       userRole  === 'admin' ? this.router.navigate(['portfolios'])
+        : this.router.navigate(['home'])  
     })
       : this.toastr.warning('Fyll alla nödvändiga rutor')
   }
-  
+
 }

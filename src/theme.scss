@@ -4,11 +4,23 @@
 
 
 $my-primary: mat-palette($mat-purple, 400);
-$my-accent: mat-palette($mat-light-green, 700);
+$my-accent: mat-palette($mat-light-green, 700, 400, 200);
+$my-warn: mat-palette($mat-red, 400);
+$my-base: mat-palette($mat-grey, 600);
+
+$light-theme: mat-light-theme( $my-primary, $my-accent, $my-warn);
+$dark-theme: mat-dark-theme( $my-primary, $my-accent, $my-warn);
 
 
+.light-theme{
+    @include angular-material-theme($light-theme);
+}
+.dark-theme{
+    @include angular-material-theme($dark-theme)
+}
 
-$my-theme: mat-light-theme(
-    $my-primary, $my-accent);
-
-@include angular-material-theme($my-theme);
+// Export theme colors
+$primary: mat-color($my-primary);
+$accent: mat-color($my-accent);
+$warn: mat-color($my-warn);
+$base: mat-color($my-base);

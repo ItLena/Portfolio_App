@@ -1,29 +1,28 @@
 <div class="content">
 <mat-card>
     <mat-card-header>
-        <h1 *ngIf="isAddMood">Registrera ny användare</h1>
-        <h1 *ngIf="!isAddMood">Redigera användaren</h1>
+        <h1>{{title}} </h1>       
     </mat-card-header>
     <mat-card-content>
-<form class="form" [formGroup]=" registerForm" (ngSubmit)="onSubmit()">
+<form *ngIf="!loading" class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">   
     <mat-form-field class="full-width">
       <mat-label>Namn</mat-label>
-      <input type = "text" matInput formControlName = "firstName">
+      <input type = "text" matInput formControlName="firstName" ngClass="subbmited" >
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Efternamn</mat-label>
-      <input type="text" matInput formControlName = "lastName">
+      <input type="text" matInput formControlName="lastName" ngClass="subbmited">
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName = "userName">
+      <input type="email" matInput formControlName="userName" ngClass="subbmited">
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Lösenord</mat-label>
-      <input type="password" matInput formControlName = "password">
+      <input type="password" matInput formControlName="password" ngClass="subbmited" >
     </mat-form-field>
     <div class="spacer">
-          <button mat-icon-button routerLink="" matTooltip="Tillbaka"><mat-icon color="primary">arrow_back</mat-icon></button>       
+          <button mat-icon-button  matTooltip="Tillbaka" (click)="back()"><mat-icon color="primary">arrow_back</mat-icon></button>       
           <button mat-raised-button color="primary">Registrera</button>  
     </div>
   </form>

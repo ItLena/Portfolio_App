@@ -1,19 +1,29 @@
-button:hover{
-    background-color: #ab47bc;
-    color: white;
-  }
-  
-  mat-list-item {
-    display: flex;  
+@import "../../../../theme.scss";
 
-    b{
-      margin-right: 5px;
-    }
-  }
-  mat-list-item:hover{
-    // background-color: 
-    border-radius: 10px;
-    border: 1px solid #eeedee;
-  }
+button:hover {
+  color: white;
+  background-color: $primary;
+  border: 1px solid white;
+  border-radius: 3px;  
+  padding: 7% !important;
+}
 
- 
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+section{
+  margin-bottom: 3%;
+}

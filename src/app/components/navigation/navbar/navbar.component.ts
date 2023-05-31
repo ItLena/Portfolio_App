@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,15 +7,24 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent{
+
+  @Output() readonly mode = new EventEmitter<boolean>();
+  isDarkMode = false;
 
   
-  constructor(private router: Router, private service: AuthService){}
+  constructor( private authService: AuthService){    
+  } 
+
 
   logout(){
-    this.service.logOut();
+    this.authService.logOut();
   }
 
- 
+  onChangeToggle(){
+    this.isDarkMode =!this.isDarkMode
+    this.mode.emit(this.isDarkMode)
+    
+  }
 
 }

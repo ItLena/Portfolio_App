@@ -18,3 +18,23 @@ export class Position {
     date?: string | null;
     quantity? : number | null;  
 }
+
+export class Performance{
+    portfolioId?: number | null;
+    date?: string | null;
+    portfolioPerformance?: number | null;
+    benchmarkPerformance?: number | null;
+    portfolioValue?: number | null;
+}
+
+export class Risk{
+    portfolioId?: number | null;
+    year?: string | null;
+    ammountDays?: number | null;
+    sDforPortfolio?: number | null;
+    sDforBenchmark?: number | null;
+    trackingError?: number | null;
+    ratio?: number | null;
+
+}
+

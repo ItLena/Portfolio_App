@@ -19,13 +19,10 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
 import { SideNavComponent } from './components/navigation/side-nav/side-nav.component';
 import { PortfolioListComponent } from './components/portfolio/portfolio-list/portfolio-list.component';
-import {Chart} from 'chart.js';
-
-
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,    
     RegisterComponent,
     LoginComponent,
     HomeComponent,

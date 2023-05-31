@@ -17,10 +17,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
-
-
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -45,7 +43,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatToolbarModule,
     MatListModule,
     MatTooltipModule,
-    
+    MatSlideToggleModule,
+    MatGridListModule,
   ]
 })
 export class MaterialModule { }

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PersonService } from '../../../services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,13 +13,14 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent {
 
-  registerForm!: FormGroup;
-  isAddMood!: boolean;
-  loading = false;
-  submitted = false;
+  userForm!: FormGroup;
+  title!: string;
   id: any;
+  person?: Person;
+  loading: boolean = false;
+  submitting = false;
+  submitted = false;
 
-  @Input() person?: Person;
   constructor(
     private builder: FormBuilder,
     private toastr: ToastrService,
@@ -28,61 +29,58 @@ export class RegisterComponent {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.isAddMood = !this.id;
 
-    if (this.isAddMood) {
-      this.registerForm = this.builder.group({
-        firstName: this.builder.control('', Validators.required),
-        lastName: this.builder.control('', Validators.required),
-        userName: this.builder.control('', Validators.compose([Validators.required, Validators.email])),
-        password: this.builder.control('', Validators.required),
-        personRole: 'customer'
-      })
-    }
-    if(!this.isAddMood){
-      this.service.getUserById(this.id)
-      .pipe(first())
-      .subscribe(x=>this.registerForm.patchValue(x));
-    }
-  }
+    this.id = this.route.snapshot.paramMap.get('id');
 
-  onSubmit(){
-    this.submitted = true;
-    this.loading = true;
-    if(this.isAddMood){
-      this.registerUser()
-    }else{
-      this.updateUser()
-    }
-
-  }
-
-  registerUser() {
-    const person_data = this.registerForm.value;
-    this.registerForm.valid ?
-      this.service.createUser(person_data).subscribe(() => {
-        this.toastr.success("Registreringen lyckades");
-        this.registerForm.reset();
-        this.router.navigate(['login'])
-      })
-      : this.toastr.warning('Fyll alla nödvändiga rutor')
-  }
-
-  updateUser() {
-    this.service.updateUser(this.id, this.registerForm.value)
-    .pipe(first())
-    .subscribe({
-      next:() =>{
-        this.toastr.success("Uppdateringen lyckades");
-        this.router.navigate(['home'])
-      },
-      error: error =>{
-        this.toastr.warning('Någonting gick fel')
-        this.loading = false;
-      }
+    //form with validations
+    this.userForm = this.builder.group({
+      id: this.builder.control('1'),
+      firstName: this.builder.control('', Validators.required),
+      lastName: this.builder.control('', Validators.required),
+      userName: this.builder.control('', Validators.compose([Validators.required, Validators.email])),
+      password: this.builder.control('', Validators.required),
+      personRole: this.builder.control('customer')
     })
 
+    this.title = 'Add user';
+
+    //edit mode
+    if (this.id) {
+      this.title = 'Edit user';
+      this.loading = true;
+
+      this.service.getUserById(this.id)
+        .pipe(first())
+        .subscribe(res => {
+          this.person = res;
+          this.userForm.patchValue(res);
+          this.loading = false;
+        })
+    }
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.submitting = true;
+    this.userForm.valid ?
+      this.saveUser()
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            this.id ? this.toastr.success("Uppdateringen lyckades") : this.toastr.success("Registreringen lyckades");
+            this.userForm.reset();
+            this.router.navigate([''])
+          }
+        })
+      : this.toastr.warning('Fyll alla nödvändiga rutor');
+    this.submitting = false;
+  };
+
+  private saveUser() {    
+    return this.id ? this.service.updateUser(this.id!, this.userForm.value) : this.service.createUser(this.userForm.value)
+  }
+  back(){
+    this.id? this.router.navigate(['users']) :  this.router.navigate([''])
   }
 }
 

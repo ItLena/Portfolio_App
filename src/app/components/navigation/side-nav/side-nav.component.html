@@ -1,31 +1,28 @@
+<mat-sidenav #sidenav mode="side" opened="isExpanded">
+    <mat-nav-list>
+        <mat-list-item (click)="isExpanded = !isExpanded">
+            <mat-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
+        </mat-list-item>
 
-<mat-sidenav #sidenav mode="side" opened = "isExpanded">
-<mat-nav-list>
-    <mat-list-item (click)="isExpanded = !isExpanded">        
-        <mat-icon  class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>     
-    </mat-list-item>
+        <mat-list-item routerLink='/home'>
+            <span>
+                <mat-icon>home</mat-icon>
+                <h5 *ngIf="isExpanded">Hem</h5>
+            </span>
+        </mat-list-item>
 
-    <mat-list-item routerLink='/home'>
-        <span>
-        <mat-icon >home</mat-icon>
-        <h5 *ngIf="isExpanded">Hem</h5>
-    </span>
-    </mat-list-item >
+        <mat-list-item routerLink='/users'>
+            <span>
+                <mat-icon>group</mat-icon>
+                <h5 *ngIf="isExpanded">Användare</h5>
+            </span>
+        </mat-list-item>
 
-    <mat-list-item routerLink='/users'>
-        <span>
-        <mat-icon>group</mat-icon>
-        <h5 *ngIf="isExpanded">Användare</h5>
-    </span>
-    </mat-list-item >
-
-    <mat-list-item  routerLink='/portfolios'>
-        <span>
-        <mat-icon>cases</mat-icon>
-      <h5 *ngIf="isExpanded" >Portfolios</h5>
-    </span>
-    </mat-list-item>
-</mat-nav-list>
+        <mat-list-item routerLink='/portfolios'>
+            <span>
+                <mat-icon>cases</mat-icon>
+                <h5 *ngIf="isExpanded">Portfolios</h5>
+            </span>
+        </mat-list-item>
+    </mat-nav-list>
 </mat-sidenav>
-
-

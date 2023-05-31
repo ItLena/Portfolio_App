@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, Inject, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,21 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'portfolio-app'; 
 
+ title = 'portfolio-app'; 
+
+
+
+ constructor(@Inject (DOCUMENT) private document: Document, 
+  private renderer: Renderer2){}
+
+
+ 
+  switchMode($event: any){
+    let hostClass = $event? 'dark-theme' : 'light-theme';
+    this.renderer.setAttribute(this.document.body, 'class', hostClass);   
+    window.localStorage.getItem(hostClass) 
+    
+  }
+  
 }

@@ -22,15 +22,5 @@ export class PortfolioService {
     return this.http.get<Portfolio[]>(this.apiUrl + '/portfolios')
   }
 
-//   updateUser(person: Person) : Observable<Person[]>{
-//     return this.http.put<Person[]>(this.apiUrl + '/' + person.id, person)
-//   }
 
-//   deleteUser(person: Person) : Observable<Person[]>{
-//     return this.http.delete<Person[]>(this.apiUrl + '/' + person.id)
-//   }
-
-//   createUser(person: Person):Observable<Person[]>{
-//     return this.http.post<Person[]>(this.apiUrl +'/register', person )
-//   }
  }

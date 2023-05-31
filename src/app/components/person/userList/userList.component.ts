@@ -11,7 +11,7 @@ import { PersonService } from 'src/app/services/person.service';
 export class UserListComponent {
 
   persons: Person[] = [];
-  displayedColumns: string[] = ['Namn', 'Efternamn', 'Epost', 'Roll', 'Redigera'];
+  displayedColumns: string[] = ['Id', 'Namn', 'Efternamn', 'Epost', 'Roll', 'Redigera'];
   
   constructor( private personService: PersonService,  private router: Router) {}
 
@@ -19,7 +19,11 @@ export class UserListComponent {
     this.personService.getAll()
     .subscribe((result: Person[])=> (this.persons = result))  
   }
+
   editUser(id:any){
-    this.router.navigate(['/editUser' +'/'+ id])  
+    this.router.navigate(['/editUser/'+ id])     
+  }
+  addUser(){
+    this.router.navigate(['/register'])  
   }
 }

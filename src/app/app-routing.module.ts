@@ -10,13 +10,13 @@ import { PortfolioListComponent } from './components/portfolio/portfolio-list/po
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: '', component: LoginComponent},  
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard.canActivate]},
   {path: 'users', component: UserListComponent, canActivate: [AuthGuard.canActivate]},
-  {path: 'editUser/:id', component: UserListComponent, canActivate: [AuthGuard.canActivate]},
-  {path: 'portfolios', component: PortfolioListComponent},
-  {path: 'portfolios/:id', component: PortfolioDetailsComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard.canActivate]},
+  {path: 'editUser/:id', component: RegisterComponent, canActivate: [AuthGuard.canActivate]},
+  {path: 'portfolios', component: PortfolioListComponent, canActivate: [AuthGuard.canActivate]},
+  {path: 'portfolios/:id', component: PortfolioDetailsComponent, canActivate: [AuthGuard.canActivate]},
 ];
 
 @NgModule({
