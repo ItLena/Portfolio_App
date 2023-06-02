@@ -32,11 +32,11 @@
           <td mat-cell *matCellDef="let position"> {{position.instrumentType}} </td>
         </ng-container>
         <ng-container matColumnDef="Företagsnamn">
-          <th mat-header-cell *matHeaderCellDef> Företagsnamn </th>
+          <th mat-header-cell *matHeaderCellDef> Instrument </th>
           <td mat-cell *matCellDef="let position"> {{position.instrumentName}} </td>
         </ng-container>
         <ng-container matColumnDef="Innehav">
-          <th mat-header-cell *matHeaderCellDef> Innehav </th>
+          <th mat-header-cell *matHeaderCellDef> Antal </th>
           <td mat-cell *matCellDef="let position"> {{position.quantity}} </td>
         </ng-container>
         <ng-container matColumnDef="Värde">
@@ -72,19 +72,19 @@
             <p>{{risk.ammountDays}} </p>
           </span>
           <span >
-            <b>P avvikelse: </b>
+            <b>P Volatilitet: </b>
             <p>{{risk.sDforPortfolio}}</p>
           </span>
           <span >
-            <b>BM avvikelse: </b>
+            <b>BM Volatilitet: </b>
             <p>{{risk.sDforBenchmark}}</p>
           </span>
           <span >
-            <b>Tracking error: </b>
+            <b>TR: </b>
             <p>{{risk.trackingError}} </p>
           </span>
           <span class="data-span">
-            <b>Ratio: </b>
+            <b>IR: </b>
             <p>{{risk.ratio}} </p>
           </span>
         </mat-card-content>

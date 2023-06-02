@@ -8,13 +8,13 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'], 
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
- 
-  
+
+
   constructor(private builder: FormBuilder, private toastr: ToastrService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router) {
   }
 
@@ -25,12 +25,12 @@ export class LoginComponent {
 
   login() {
     const data = this.loginForm.value;
-    data.userName && data.password ? this.authService.login(data).subscribe((token: any) => {   
-      this.authService.storeToken(token)
-       this.toastr.success('Inloggning har lyckats!');             
-       let userRole = this.authService.hasRole()
-       userRole  === 'admin' ? this.router.navigate(['portfolios'])
-        : this.router.navigate(['home'])  
+    data.userName && data.password ? this.authService.login(data).subscribe((token: any) => {
+      this.authService.storeToken(token);
+      this.authService.isLoggedIn();
+      this.toastr.success('Inloggning har lyckats!');
+      this.authService.isAdmin() ? this.router.navigate(['portfolios'])
+        : this.router.navigate(['home'])
     })
       : this.toastr.warning('Fyll alla nödvändiga rutor')
   }

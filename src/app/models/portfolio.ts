@@ -1,40 +1,41 @@
 
 export class Portfolio {
-    id?: number | null;
-    name?: string | null;
-    dateCreated?: string | null 
-    dateDeleted?: string | null;
-    personName?: string | null;
-    benchmarkDescription? : string | null;
-    portfolioValue?: number | null;
-    lastUpdated?: string | null;
+    id?: number 
+    name?: string 
+    dateCreated?: string 
+    dateDeleted?: string 
+    personName?: string 
+    benchmarkDescription? : string 
+    portfolioValue?: number 
+    lastUpdated?: string 
 }
 
 export class Position {
     id?: number | null;
-    instrumentName?: string | null;
-    instrumentType?: string | null 
-    totalValue?: number | null;
-    date?: string | null;
-    quantity? : number | null;  
+    instrumentName?: string;
+    instrumentType?: string 
+    totalValue?: number
+    date?: string  
+    quantity? : number  
 }
 
 export class Performance{
-    portfolioId?: number | null;
-    date?: string | null;
-    portfolioPerformance?: number | null;
-    benchmarkPerformance?: number | null;
-    portfolioValue?: number | null;
+    portfolioId?: number ;
+    date?: string 
+    portfolioPerformance?: number ;
+    benchmarkPerformance?: number;
+    portfolioValue?: number ;
 }
+    
 
 export class Risk{
-    portfolioId?: number | null;
-    year?: string | null;
-    ammountDays?: number | null;
-    sDforPortfolio?: number | null;
-    sDforBenchmark?: number | null;
-    trackingError?: number | null;
-    ratio?: number | null;
+    portfolioId?: number 
+    year?: string 
+    ammountDays?: number 
+    sDforPortfolio?: number 
+    sDforBenchmark?: number
+    trackingError?: number
+    ratio?: number 
 
 }
 

@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar spacer" color="primary">
+<mat-toolbar class="navbar spacer" color="primary" *ngIf="isLoggedIn" >
   Välkommen
   <div class="spacer">  
   <button mat-icon-button style="margin-right: 10px;" (click)="logout()" matTooltip="Logga ut" >

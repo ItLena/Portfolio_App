@@ -1,28 +1,37 @@
-<mat-sidenav #sidenav mode="side" opened="isExpanded">
+<mat-sidenav #sidenav mode="side" opened="isExpanded" *ngIf="isLoggedIn">
     <mat-nav-list>
         <mat-list-item (click)="isExpanded = !isExpanded">
             <mat-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
         </mat-list-item>
 
-        <mat-list-item routerLink='/home'>
+        <mat-list-item routerLink='/home' *ngIf="!isAdmin">
             <span>
                 <mat-icon>home</mat-icon>
                 <h5 *ngIf="isExpanded">Hem</h5>
             </span>
         </mat-list-item>
 
-        <mat-list-item routerLink='/users'>
+        <mat-list-item routerLink='/users' *ngIf="isAdmin">
             <span>
                 <mat-icon>group</mat-icon>
                 <h5 *ngIf="isExpanded">Användare</h5>
             </span>
         </mat-list-item>
 
-        <mat-list-item routerLink='/portfolios'>
+        <mat-list-item routerLink='/portfolios'*ngIf="isAdmin">
             <span>
                 <mat-icon>cases</mat-icon>
                 <h5 *ngIf="isExpanded">Portfolios</h5>
             </span>
         </mat-list-item>
+        <mat-list-item  *ngIf="isAdmin">
+            <a color="accent" href="https://app.powerbi.com/groups/me/reports/38159c03-f539-4410-b826-0ec044338048/ReportSection65e435546881f9250c32?experience=power-bi">
+            <span>
+                <mat-icon>article</mat-icon>
+                <h5 *ngIf="isExpanded">Visa Power BI</h5>
+            </span>
+        </a>
+        </mat-list-item>
+
     </mat-nav-list>
 </mat-sidenav>
