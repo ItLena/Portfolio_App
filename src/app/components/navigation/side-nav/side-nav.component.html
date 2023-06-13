@@ -1,4 +1,4 @@
-<mat-sidenav #sidenav mode="side" opened="isExpanded" *ngIf="isLoggedIn">
+<mat-sidenav #sidenav mode="side" opened="isExpanded" *ngIf="isLoggedIn$ | async">
     <mat-nav-list>
         <mat-list-item (click)="isExpanded = !isExpanded">
             <mat-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>

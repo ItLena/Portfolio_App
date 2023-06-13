@@ -1,4 +1,13 @@
-
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <mat-form-field class="full-width">
+    <mat-label>Sök i tabelen</mat-label>
+    <input matInput (keyup)="applyFilter($event)" >
+  </mat-form-field>
+  <button mat-raised-button color="accent" style="margin-left: 20px;">
+     <mat-icon>add</mat-icon>
+    Skapa ny portfölj   
+  </button>
+</div>
  <table mat-table [dataSource]="portfolio" class="mat-elevation-z8">     
 
     <ng-container matColumnDef="Portföljnamn">

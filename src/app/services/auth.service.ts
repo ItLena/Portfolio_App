@@ -10,55 +10,52 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-    apiUrl = 'https://localhost:7059/api/Login';  
-    status = new BehaviorSubject<boolean>(false);
-    getStatus = this.status.asObservable();
+  apiUrl = 'https://localhost:7059/api/Login';
+  status = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router,
     private helper: JwtHelperService,
-   ) { }
+  ) { }
 
   //Access to login end point
-  login(login: Login) : Observable<any>{
-    return this.http.post(this.apiUrl + '/login', login)   
+  login(login: Login): Observable<any> {
+    return this.http.post(this.apiUrl + '/login', login)
+
   }
 
   // log out and clean storage
-  logOut(){
-    localStorage.clear(); 
-    this.status.next(false);  
-    this.router.navigate([''])
+  logOut() {
+     localStorage.removeItem('token');
+     this.status.next(false);
+    this.router.navigate(['']);
+   
   }
 
-  storeToken(tokenValue: string){
+  storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue)
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem('token')
   }
 
   // if user has token 
-   isLoggedIn() {    
-    let logged = false
-     this.status.next(!(!localStorage.getItem('token'))) 
-     this.getStatus.subscribe(x => logged = x)
-     return logged
+  isLoggedIn() {
+    this.status.next(!(!localStorage.getItem('token')))
+    return this.status.asObservable();
   }
 
-  //takes token and decode user role 
-  hasRole(){
-    let token = this.getToken();
-    let decode = this.helper.decodeToken(token!);
-    let userRole = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    return  userRole ; 
-  } 
-  
-  //if userRole is admin
-  isAdmin(): boolean{
-   return  this.hasRole() == 'admin' ? true : false
+  //takes token, decode user role  and return boolean
+  isAdmin() {
+    if (this.getToken() != null) {
+      let decode = this.helper.decodeToken(this.getToken()!);
+      let userRole = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];      
+      return userRole === 'admin' ? true : false;
+    } else {
+     return  null
+    }
   }
-
+ 
 }

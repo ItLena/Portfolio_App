@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, Inject, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,6 @@ export class AppComponent {
     let hostClass = $event? 'dark-theme' : 'light-theme';
     this.renderer.setAttribute(this.document.body, 'class', hostClass);   
     window.localStorage.getItem(hostClass) 
-    
   }
   
 }

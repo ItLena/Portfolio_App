@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Person } from 'src/app/models/person';
 import { PersonService } from 'src/app/services/person.service';
+
 
 @Component({
   selector: 'app-user-list',
@@ -10,14 +11,17 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class UserListComponent {
 
-  persons: Person[] = [];
+  persons: any;
   displayedColumns: string[] = ['Id', 'Namn', 'Efternamn', 'Epost', 'Roll', 'Redigera'];
   
   constructor( private personService: PersonService,  private router: Router) {}
 
   ngOnInit(): void{
     this.personService.getAll()
-    .subscribe((result: Person[])=> (this.persons = result))  
+    .subscribe((result: any)=> (
+       this.persons = new MatTableDataSource(result)
+      ))  
+    
   }
 
   editUser(id:any){
@@ -25,5 +29,9 @@ export class UserListComponent {
   }
   addUser(){
     this.router.navigate(['/register'])  
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.persons.filter = filterValue.trim().toLowerCase();
   }
 }

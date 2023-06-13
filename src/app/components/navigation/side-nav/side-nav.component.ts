@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,22 +9,28 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SideNavComponent  implements OnInit{
  
-  isExpanded: boolean = false;
-  isLogged = new BehaviorSubject<boolean>(false);
-  //userRole$ : Observable<string> | undefined;
-  isLoggedIn = false;
-  isAdmin= false;
+  isExpanded: boolean = false; 
+  isAdmin : (boolean | null) = false;
+  isLoggedIn$!: Observable<boolean>; 
+    
   
   constructor( private authService: AuthService){ } 
  
   ngOnInit(): void{
-    this.authService.isLoggedIn();
-    this.authService.getStatus.subscribe(x=>this.isLoggedIn = x);
-
-    this.authService.isAdmin() ? this.isAdmin = true : false
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+    // this.authService.isAdmin() ? this.isAdmin = true : false
+    this.isAdmin = this.authService.isAdmin();
+    if(this.authService.isAdmin()){
+      this.isAdmin = true
+    }
+    else{
+      this.isAdmin = false
+    }
+    console.log("isLogged", this.isLoggedIn$)
+    console.log("isAdmin", this.isAdmin)
+    
    }
  
-
 
  
 }

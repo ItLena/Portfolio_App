@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -10,27 +11,24 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit{
 
   @Output() readonly mode = new EventEmitter<boolean>();
-  isDarkMode = false;
-  isLoggedIn = false;
+  isDarkMode = false; 
+  isLoggedIn$!: Observable<boolean>; 
   
-  constructor( private authService: AuthService){ } 
+  constructor( private authService: AuthService, private toastr: ToastrService){ } 
 
   ngOnInit(): void{
-    this.authService.isLoggedIn();
-    this.authService.getStatus.subscribe(x=>this.isLoggedIn = x)
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+   
    }
 
   logout(){    
     this.authService.logOut();
-    this.isLoggedIn = false;    
+    this.toastr.success('Du är utloggad!')     
   }
 
   onChangeToggle(){
-    console.log("Toggle-isLoggedIN",this.isLoggedIn)
     this.isDarkMode =!this.isDarkMode
-    this.mode.emit(this.isDarkMode)
-
-    
+    this.mode.emit(this.isDarkMode)   
   }
-
+ 
 }
