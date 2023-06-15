@@ -5,6 +5,7 @@ import { PersonService } from '../../../services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { first } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent {
     private toastr: ToastrService,
     private service: PersonService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -80,7 +82,7 @@ export class RegisterComponent {
     return this.id ? this.service.updateUser(this.id!, this.userForm.value) : this.service.createUser(this.userForm.value)
   }
   back(){
-    this.id? this.router.navigate(['users']) :  this.router.navigate([''])
+    this.authService.isAdmin() || this.id? this.router.navigate(['users']) :  this.router.navigate([''])
   }
 }
 

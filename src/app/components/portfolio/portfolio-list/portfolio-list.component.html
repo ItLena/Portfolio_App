@@ -1,39 +1,48 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <mat-form-field class="full-width">
     <mat-label>Sök i tabelen</mat-label>
-    <input matInput (keyup)="applyFilter($event)" >
+    <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
   <button mat-raised-button color="accent" style="margin-left: 20px;">
      <mat-icon>add</mat-icon>
     Skapa ny portfölj   
   </button>
 </div>
- <table mat-table [dataSource]="portfolio" class="mat-elevation-z8">     
+<div class="mat-elevation-z8">
+ <table mat-table [dataSource]="portfolio" matSort>     
 
-    <ng-container matColumnDef="Portföljnamn">
-      <th mat-header-cell *matHeaderCellDef> Portföljnamn </th>
-      <td mat-cell *matCellDef="let portfolio"> {{portfolio.name}} </td>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Portföljnamn </th>
+      <td mat-cell *matCellDef="let portfolio" (click)="showDetails(portfolio.id)"> {{portfolio.name}} </td>
     </ng-container>  
 
-    <ng-container matColumnDef="Skapad">
-      <th mat-header-cell *matHeaderCellDef> Skapad </th>
-      <td mat-cell *matCellDef="let portfolio"> {{portfolio.dateCreated | date}} </td>
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Skapad </th>
+      <td mat-cell *matCellDef="let portfolio" (click)="showDetails(portfolio.id)"> {{portfolio.dateCreated | date}} </td>
     </ng-container>
  
-    <ng-container matColumnDef="Benchmark">
-      <th mat-header-cell *matHeaderCellDef> Benchmark </th>
-      <td mat-cell *matCellDef="let portfolio"> {{portfolio.benchmarkDescription}} </td>
+    <ng-container matColumnDef="benchmarkDescription" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Benchmark </th>
+      <td mat-cell *matCellDef="let portfolio" (click)="showDetails(portfolio.id)"> {{portfolio.benchmarkDescription}} </td>
     </ng-container>  
    
-    <ng-container matColumnDef="Potföljägare">
-      <th mat-header-cell *matHeaderCellDef> Potföljägare </th>
-      <td mat-cell *matCellDef="let portfolio"> {{portfolio.personName}} </td>
+    <ng-container matColumnDef="personName" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Potföljägare </th>
+      <td mat-cell *matCellDef="let portfolio" (click)="showDetails(portfolio.id)"> {{portfolio.personName}} </td>
     </ng-container>
-    <ng-container matColumnDef="Visa mer">
+
+    <ng-container matColumnDef="link">
         <th mat-header-cell *matHeaderCellDef> Visa mer </th>
         <td mat-cell *matCellDef="let portfolio"><button mat-icon-button color="accent" (click)="showDetails(portfolio.id)"><mat-icon>chevron_right</mat-icon></button></td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Finns ingen motsvarande data i tabelen"{{input.value}}"</td>
+      </tr>
   </table>
+  <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

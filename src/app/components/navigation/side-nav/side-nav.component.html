@@ -10,6 +10,12 @@
                 <h5 *ngIf="isExpanded">Hem</h5>
             </span>
         </mat-list-item>
+        <mat-list-item routerLink='/instruments'>
+            <span>
+                <mat-icon>account_balance</mat-icon>
+                <h5 *ngIf="isExpanded">Instruments</h5>
+            </span>
+        </mat-list-item>
 
         <mat-list-item routerLink='/users' *ngIf="isAdmin">
             <span>
@@ -21,11 +27,11 @@
         <mat-list-item routerLink='/portfolios'*ngIf="isAdmin">
             <span>
                 <mat-icon>cases</mat-icon>
-                <h5 *ngIf="isExpanded">Portfolios</h5>
+                <h5 *ngIf="isExpanded">Portföjer</h5>
             </span>
         </mat-list-item>
         <mat-list-item  *ngIf="isAdmin">
-            <a color="accent" href="https://app.powerbi.com/groups/me/reports/38159c03-f539-4410-b826-0ec044338048/ReportSection65e435546881f9250c32?experience=power-bi">
+            <a href="https://app.powerbi.com/groups/me/reports/38159c03-f539-4410-b826-0ec044338048/ReportSection65e435546881f9250c32?experience=power-bi">
             <span>
                 <mat-icon>article</mat-icon>
                 <h5 *ngIf="isExpanded">Visa Power BI</h5>

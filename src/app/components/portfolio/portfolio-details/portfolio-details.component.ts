@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Portfolio, Position, Performance, Risk } from 'src/app/models/portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { PositionService } from 'src/app/services/position.service';
 import { Chart, registerables } from 'chart.js'
-import { PerformanceService } from 'src/app/services/performance.service';
-import { RiskService } from 'src/app/services/risk.service';
+
 Chart.register(...registerables);
 
 @Component({
@@ -20,7 +18,6 @@ export class PortfolioDetailsComponent {
   performances: Performance[] = [];
   risk: any = Risk;
   displayedColumns: string[] = ['Värdepaperstyp', 'Företagsnamn', 'Innehav', 'Värde', 'Datum', 'Agera'];
-
   positionChart: any;
   performanceChart: any;
   positionName: any;
@@ -33,10 +30,7 @@ export class PortfolioDetailsComponent {
 
   constructor(
     private portfolioService: PortfolioService,
-    private activeRoute: ActivatedRoute,
-    private positionService: PositionService,
-    private performanceService: PerformanceService,
-    private riskService: RiskService) { }
+    private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -49,14 +43,14 @@ export class PortfolioDetailsComponent {
         this.portfolio = result
       });
 
-    //Get Risks data
-    this.riskService.getRisksByPortfolioId(id)
+    //Get portfolio risks data
+    this.portfolioService.getRisksByPortfolioId(id)
       .subscribe(result => {
         this.risk = result
       });
 
     //Getting positions list with ditails and setting data for Pie Chart
-    this.positionService.getPositionsByPortfolioId(id)
+    this.portfolioService.getPositionsByPortfolioId(id)
       .subscribe((result: Position[]) => {
         this.positions = result,
           this.positionName = this.positions.map((x: any) => x.instrumentName),
@@ -77,8 +71,8 @@ export class PortfolioDetailsComponent {
       });
 
     //Getting performances data and setting it to multiple Line Chart
-    this.performanceService.getPerformancesByPortfolioId(id)
-      .subscribe((result: Performance[]) => {
+    this.portfolioService.getPerformancesByPortfolioId(id)
+      .subscribe((result: any) => {
         this.performances = result,
           this.performanceDate = this.performances.map((x: any) => x.date),
           this.portfolioPerformance = this.performances.map((x: any) => x.portfolioPerformance),
@@ -111,12 +105,9 @@ export class PortfolioDetailsComponent {
           //   scales: {
           //     xAxes: {
           //       type: 'time',
-          //       time: {
-          //         parser: 'MM/DD/YYYY HH:mm',
-          //         tooltipFormat: 'll HH:mm',
-          //         unit: 'day',                  
+          //       time: {                  
           //         displayFormats: {
-          //           'day': 'MM/DD/YYYY'
+          //           'day': 'dd'
           //         }
           //       }
           //     },

@@ -20,6 +20,9 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
 import { SideNavComponent } from './components/navigation/side-nav/side-nav.component';
 import { PortfolioListComponent } from './components/portfolio/portfolio-list/portfolio-list.component';
+import { InstrumentListComponent } from './components/instrument/instrument-list/instrument-list.component';
+import { InstrumentPerformanceDialogComponent } from './components/instrument/instrument-performance-dialog/instrument-performance-dialog.component';
+import { TransaktionInstrumentDialogComponent } from './components/instrument/transaktion-instrument-dialog/transaktion-instrument-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { PortfolioListComponent } from './components/portfolio/portfolio-list/po
     PortfolioDetailsComponent,
     SideNavComponent,
     PortfolioListComponent,
+    InstrumentListComponent,
+    InstrumentPerformanceDialogComponent,
+    TransaktionInstrumentDialogComponent,
    
   ],
   imports: [

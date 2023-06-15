@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Portfolio } from 'src/app/models/portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -11,23 +12,32 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class PortfolioListComponent {
 
-  
-  portfolio: any;
-  displayedColumns: string[] = ['Portföljnamn', 'Skapad', 'Benchmark', 'Potföljägare', 'Visa mer'];
-  constructor( private portfolioService: PortfolioService, private router: Router) {}
+  portfolio!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['name', 'dateCreated', 'benchmarkDescription', 'personName', 'link'];
 
-  ngOnInit(): void{
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private portfolioService: PortfolioService, private router: Router) { }
+
+  ngOnInit(): void {
     this.portfolioService.getAll()
-    .subscribe((result: any)=> (
-      this.portfolio = new MatTableDataSource(result))
-      )  
+      .subscribe((result: any) => {
+        this.portfolio = new MatTableDataSource(result);
+        this.portfolio.paginator = this.paginator;
+        this.portfolio.sort = this.sort;
+      })
   }
 
-  showDetails(id: any){
-    this.router.navigate(['/portfolios' +'/'+ id])  
+  showDetails(id: any) {
+    this.router.navigate(['/portfolios' + '/' + id])
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.portfolio.filter = filterValue.trim().toLowerCase();
+
+    if (this.portfolio.paginator) {
+      this.portfolio.paginator.firstPage();
+    }
   }
 }
