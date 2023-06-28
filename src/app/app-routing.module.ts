@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'editUser/:id', component: RegisterComponent, canActivate: [AuthGuard.canActivate]},
   {path: 'portfolios', component: PortfolioListComponent, canActivate: [AuthGuard.canActivate]},
   {path: 'portfolios/:id', component: PortfolioDetailsComponent, canActivate: [AuthGuard.canActivate]},
+  
 ];
 
 @NgModule({

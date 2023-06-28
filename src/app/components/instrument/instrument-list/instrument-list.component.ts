@@ -24,8 +24,8 @@ export class InstrumentListComponent {
 
   instruments!: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'date', 'type', 'name', 'price', 'performance', 'btn'];
-  
-  
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -34,29 +34,35 @@ export class InstrumentListComponent {
   constructor(private instrumentService: InstrumentService,
     public dialog: MatDialog) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.instrumentService.getAll()
       .subscribe((result: any) => {
         this.instruments = new MatTableDataSource(result);
         this.instruments.paginator = this.paginator;
         this.instruments.sort = this.sort;
 
-      })    
+      })
   }
 
 
   showInstrumentPerformance(id: number, instrumentName: string) {
-    const dialogRef = this.dialog.open(InstrumentPerformanceDialogComponent,{
+    const dialogRef = this.dialog.open(InstrumentPerformanceDialogComponent, {
       width: '800px',
       data: {
-      dialogId : id, name: instrumentName}} );
+        dialogId: id, name: instrumentName
+      }
+    });
   }
 
-  buyInstrument(id: number, instrumentName: string) {
-    const dialogRef = this.dialog.open(TransaktionInstrumentDialogComponent,{
-      width: '800px',
+  buyInstrument(id: number, instrumentName: string, price: number) {
+    const dialogRef = this.dialog.open(TransaktionInstrumentDialogComponent, {
+      width: '500px',
       data: {
-      dialogId : id, name: instrumentName}} );
+        instrumentId: id,
+        instrumentName: instrumentName,
+        price: price,
+      }
+    });
   }
 
   applyFilter(event: Event) {

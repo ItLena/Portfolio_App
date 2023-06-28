@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit{
 
   @Output() readonly mode = new EventEmitter<boolean>();
   isDarkMode = false; 
-  isLoggedIn$!: Observable<boolean>; 
+  @Input() isLoggedIn$! : Observable<boolean>; 
   
   constructor( private authService: AuthService, private toastr: ToastrService){ } 
 

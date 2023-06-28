@@ -23,6 +23,7 @@ import { PortfolioListComponent } from './components/portfolio/portfolio-list/po
 import { InstrumentListComponent } from './components/instrument/instrument-list/instrument-list.component';
 import { InstrumentPerformanceDialogComponent } from './components/instrument/instrument-performance-dialog/instrument-performance-dialog.component';
 import { TransaktionInstrumentDialogComponent } from './components/instrument/transaktion-instrument-dialog/transaktion-instrument-dialog.component';
+import { TradingListComponent } from './components/trading/trading-list/trading-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TransaktionInstrumentDialogComponent } from './components/instrument/tr
     InstrumentListComponent,
     InstrumentPerformanceDialogComponent,
     TransaktionInstrumentDialogComponent,
+    TradingListComponent,
    
   ],
   imports: [

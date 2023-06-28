@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
   templateUrl: './portfolio-list.component.html',
   styleUrls: ['./portfolio-list.component.scss']
 })
-export class PortfolioListComponent {
+export class PortfolioListComponent implements OnInit {
 
   portfolio!: MatTableDataSource<any>;
   displayedColumns: string[] = ['name', 'dateCreated', 'benchmarkDescription', 'personName', 'link'];

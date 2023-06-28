@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PersonService } from '../../../services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
   userForm!: FormGroup;
   title!: string;
@@ -82,7 +82,7 @@ export class RegisterComponent {
     return this.id ? this.service.updateUser(this.id!, this.userForm.value) : this.service.createUser(this.userForm.value)
   }
   back(){
-    this.authService.isAdmin() || this.id? this.router.navigate(['users']) :  this.router.navigate([''])
+    this.authService.getRole().role === 'admin' || this.id? this.router.navigate(['users']) :  this.router.navigate([''])
   }
 }
 

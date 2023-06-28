@@ -1,64 +1,101 @@
 @import "./theme.scss";
 
-html, body { height: 100%; }
+html,
 body {
-     margin: 0; 
-     font-family: "Nunito Sans", sans-serif;     
-   
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+
 }
 
 :host {
-    font-family:  Inter, sans-serif;
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-  }
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0; 
-    color: $base;   
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+  color: $base;
+}
 
-  p {
-    margin: 0;
-  }
+p {
+  margin: 0;
+}
 
-  .form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;   
-  }
-  .full-width{
-    width: 100%;
-  }
-  .spacer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+td,
+th {
+  text-align: center !important;
+}
 
-  .content {
-    display: flex;
-    margin: 2% auto 5%;   
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  table {
-    width: 100%;
-  }
-  
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spacer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+mat-sidenav{
+  height: 100%; 
+  width: auto;
  
-  @media only screen and (max-width: 600px) {
-    .content {width: 300px; justify-content: center; margin: auto}
-    table{width: 30%;}
-   
+}
+.content {
+  display: flex;
+  margin-top: 3em;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;  
+}
+
+table {
+  width: 100%;
+}
+
+//---Styling för pop-up dialog
+.dialog-header{
+  display: flex; 
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.dialog-box {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+//-------------------------------
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 300px;
+    justify-content: center;
+    margin: auto
   }
+
+  table {
+    width: 30%;
+  }
+
+}

@@ -1,9 +1,13 @@
 
-<app-navbar (mode)="switchMode($event)" ></app-navbar> 
-<mat-sidenav-container>    
-        <app-side-nav ></app-side-nav>   
+<app-navbar (mode)="switchMode($event)" *ngIf="isLoggedIn$ | async"></app-navbar> 
+<mat-sidenav-container autosize>   
+            <mat-sidenav #sidenav mode="side" opened="isExpanded" *ngIf="isLoggedIn$ | async" >
+            <app-side-nav [isAdmin]="isAdmin"></app-side-nav>
+        </mat-sidenav>  
+        <mat-sidenav-content >
         <div class="content">
             <router-outlet></router-outlet>
         </div>
+ </mat-sidenav-content>
 </mat-sidenav-container>
 

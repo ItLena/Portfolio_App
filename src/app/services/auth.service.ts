@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Login } from '../models/person';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -19,6 +19,11 @@ export class AuthService {
     private helper: JwtHelperService,
   ) { }
 
+  private _updateMenu = new Subject<void>();
+  get updateMenu() {
+    return this._updateMenu;
+  }
+
   //Access to login end point
   login(login: Login): Observable<any> {
     return this.http.post(this.apiUrl + '/login', login)
@@ -27,10 +32,10 @@ export class AuthService {
 
   // log out and clean storage
   logOut() {
-     localStorage.removeItem('token');
-     this.status.next(false);
+    localStorage.clear();
+    this.status.next(false);
     this.router.navigate(['']);
-   
+
   }
 
   storeToken(tokenValue: string) {
@@ -48,14 +53,12 @@ export class AuthService {
   }
 
   //takes token, decode user role  and return boolean
-  isAdmin() {
+  getRole() {
     if (this.getToken() != null) {
       let decode = this.helper.decodeToken(this.getToken()!);
-      let userRole = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];      
-      return userRole === 'admin' ? true : false;
-    } else {
-     return  null
+      let role = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      return role
     }
   }
- 
+
 }

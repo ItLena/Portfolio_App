@@ -1,9 +1,8 @@
-<div>
-    <h3 mat-dialog-title>Performance</h3>  
-      <div mat-dialog-content>
-        <canvas id="performanceChart">{{performanceChart}}</canvas>
-      </div>
+<div class="dialog-header">
+  <h3>Performance</h3>
+  <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
 </div>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>   
-</mat-dialog-actions>
+<div class="dialog-box">
+  <div mat-dialog-content style="display: flex; justify-content: center;">
+    <canvas id="performanceChart">{{performanceChart}}</canvas>
+  </div>

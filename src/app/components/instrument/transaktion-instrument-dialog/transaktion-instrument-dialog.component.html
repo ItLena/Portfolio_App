@@ -1,1 +1,22 @@
-<p>transaktion-instrument-dialog works!</p>
+<div class="dialog-header">
+  <span>
+    <h3>{{this.data.instrumentName}}</h3>
+    <h5> Pris: {{this.data.price}} SEK</h5>
+  </span>
+  <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
+</div>
+<div class="dialog-box">
+  <form class="form" [formGroup]="tradingForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>Portfölj</mat-label>
+      <mat-select type="text" matInput formControlName="portfolioId">
+        <mat-option *ngFor="let portfolio of portfolios" [value]="portfolio.id">{{portfolio.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Antal</mat-label>
+      <input type="number" matInput formControlName="quantity">
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="full-width">Köpa</button>
+  </form>
+</div>

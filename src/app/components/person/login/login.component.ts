@@ -27,21 +27,24 @@ export class LoginComponent {
     if (data.userName && data.password) {
       this.authService.login(data).subscribe((token: any) => {
         this.authService.storeToken(token);
-        this.authService.isLoggedIn();      
-        
-       if(this.authService.isAdmin())  {
-        this.router.navigate(['portfolios']);
-        this.toastr.success('Du är inloggad som admin') 
-       } 
-       else{
+        this.authService.isLoggedIn();
+        this.authService.updateMenu.next();
+
+        if (this.authService.getRole() == 'admin') {
+          this.router.navigate(['portfolios']);
+          this.toastr.success('Hej admin!')
+        }
+        else {
           this.router.navigate(['home'])
-          this.toastr.success('Inloggningen har lyckats!') 
-       }   
+          this.toastr.success('Inloggningen har lyckats!')
+        }
       })
+
     }
     else {
       this.toastr.warning('Fyll alla nödvändiga rutor')
     }
+
   }
 
 }

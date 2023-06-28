@@ -32,9 +32,9 @@
       <td mat-cell *matCellDef="let instruments"> {{instruments.price}} </td>
     </ng-container>
     <ng-container matColumnDef="performance">
-      <th mat-header-cell *matHeaderCellDef> Performance </th>
-      <td mat-cell *matCellDef="let instruments">
-       <button mat-icon-button color="primary" (click)="showInstrumentPerformance(instruments.id, instruments.name)"><mat-icon>visibility</mat-icon></button>
+      <th mat-header-cell *matHeaderCellDef>Performance</th>
+      <td mat-cell *matCellDef="let instruments"> 
+       <button mat-icon-button color="primary"  (click)="showInstrumentPerformance(instruments.id, instruments.name)"><mat-icon>bar_chart</mat-icon></button>
       </td>
     </ng-container>
   
@@ -42,7 +42,7 @@
     <ng-container matColumnDef="btn">
       <th mat-header-cell *matHeaderCellDef> Köpa </th>
       <td mat-cell *matCellDef="let instruments">
-       <button mat-raised-button color="primary" (click)="buyInstrument(instruments.id, instruments.name)">Köpa</button>
+       <button mat-raised-button color="accent" (click)="buyInstrument(instruments.id, instruments.name, instruments.price)">Köpa</button>
       </td>
     </ng-container>
   
