@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PortfolioService } from 'src/app/services/portfolio.service';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Portfolio } from 'src/app/models/portfolio';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-transaktion-instrument-dialog',
   templateUrl: './transaktion-instrument-dialog.component.html',
   styleUrls: ['./transaktion-instrument-dialog.component.scss']
@@ -30,6 +31,7 @@ export class TransaktionInstrumentDialogComponent implements OnInit {
       portfolioId: this.builder.control('', Validators.required),
       createdBy: this.builder.control(1),
       quantity: this.builder.control('', Validators.required),
+      isTransferred: this.builder.control('false')
       //dateCreated: this.builder.control(Date)   
     })
 

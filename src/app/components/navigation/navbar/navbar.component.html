@@ -1,4 +1,4 @@
-<mat-toolbar  color="primary" *ngIf="isLoggedIn$ | async" >
+<mat-toolbar class="dialog-header" color="primary" *ngIf="isLoggedIn$ |async" >
   Välkommen
   <div class="spacer">  
   <button mat-icon-button style="margin-right: 10px;" (click)="logout()" matTooltip="Logga ut">

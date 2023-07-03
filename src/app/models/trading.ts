@@ -8,4 +8,5 @@ export class Trading {
     creatorName?: string;
     quantity?: number;    
     createdBy?: number;  
+    isTransferred?: boolean;
 }

@@ -20,7 +20,8 @@ export namespace AuthGuard {
     if (token && !jwtHelper.isTokenExpired(token)) {
       return true;
     } else {
-      router.navigate([''])
+      router.navigate(['']);
+      localStorage.clear();
       return false;
     }    
   }

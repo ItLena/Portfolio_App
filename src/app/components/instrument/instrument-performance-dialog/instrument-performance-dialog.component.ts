@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Chart } from 'chart.js';
 import { Instrument, InstrumentPerformance } from 'src/app/models/instrument';
 import { InstrumentService } from 'src/app/services/instrument.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-instrument-performance-dialog',
   templateUrl: './instrument-performance-dialog.component.html',
   styleUrls: ['./instrument-performance-dialog.component.scss']

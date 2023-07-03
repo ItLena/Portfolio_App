@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PersonService } from '../../../services/person.service';
@@ -8,6 +8,7 @@ import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
@@ -17,10 +18,9 @@ export class RegisterComponent implements OnInit{
   userForm!: FormGroup;
   title!: string;
   id: any;
-  person?: Person;
-  loading: boolean = false;
-  submitting = false;
-  submitted = false;
+  person?: Person; 
+  submiting = false;
+  submited = false;
 
   constructor(
     private builder: FormBuilder,
@@ -44,45 +44,44 @@ export class RegisterComponent implements OnInit{
       personRole: this.builder.control('customer')
     })
 
-    this.title = 'Add user';
+    this.title = 'Skapa ny användare';
 
     //edit mode
     if (this.id) {
-      this.title = 'Edit user';
-      this.loading = true;
+      this.title = 'Redigera användarens data';
+         
 
       this.service.getUserById(this.id)
         .pipe(first())
         .subscribe(res => {
           this.person = res;
-          this.userForm.patchValue(res);
-          this.loading = false;
+          this.userForm.patchValue(res);         
         })
     }
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.submitting = true;
+    this.submited = true;
+    this.submiting = true;
     this.userForm.valid ?
       this.saveUser()
         .pipe(first())
         .subscribe({
           next: () => {
-            this.id ? this.toastr.success("Uppdateringen lyckades") : this.toastr.success("Registreringen lyckades");
-            this.userForm.reset();
-            this.router.navigate([''])
+            this.id  ? this.toastr.success("Uppdateringen lyckades") : this.toastr.success("Registreringen lyckades");
+            this.userForm.reset();            
+            this.authService.getRole() == 'admin' ? this.router.navigate(['users']) : this.router.navigate([''])
           }
         })
       : this.toastr.warning('Fyll alla nödvändiga rutor');
-    this.submitting = false;
+    this.submiting = false;
   };
 
   private saveUser() {    
-    return this.id ? this.service.updateUser(this.id!, this.userForm.value) : this.service.createUser(this.userForm.value)
+    return this.id ? this.service.updateUser(this.id, this.userForm.value) : this.service.createUser(this.userForm.value)
   }
   back(){
-    this.authService.getRole().role === 'admin' || this.id? this.router.navigate(['users']) :  this.router.navigate([''])
+    this.authService.getRole() == 'admin' || this.id? this.router.navigate(['users']) :  this.router.navigate([''])
   }
 }
 

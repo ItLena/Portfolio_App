@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit{
 
   @Output() readonly mode = new EventEmitter<boolean>();
   isDarkMode = false; 
-  @Input() isLoggedIn$! : Observable<boolean>; 
+  isLoggedIn$! : Observable<boolean>; 
   
   constructor( private authService: AuthService, private toastr: ToastrService){ } 
 
@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit{
 
   logout(){    
     this.authService.logOut();
-    this.toastr.success('Du är utloggad!')     
+    this.toastr.success('Du är utloggad!')  
+    console.log("loggen in:", this.isLoggedIn$)   
   }
 
   onChangeToggle(){

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Portfolio, Position, Performance, Risk } from 'src/app/models/portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
@@ -7,6 +7,7 @@ import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables);
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-portfolio-details',
   templateUrl: './portfolio-details.component.html',
   styleUrls: ['./portfolio-details.component.scss']

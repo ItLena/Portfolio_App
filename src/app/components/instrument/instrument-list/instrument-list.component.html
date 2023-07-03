@@ -39,10 +39,10 @@
     </ng-container>
   
   
-    <ng-container matColumnDef="btn">
-      <th mat-header-cell *matHeaderCellDef> Köpa </th>
+    <ng-container matColumnDef="btn"  >
+      <th mat-header-cell *matHeaderCellDef [hidden] = "isAdmin$"> Köpa </th>
       <td mat-cell *matCellDef="let instruments">
-       <button mat-raised-button color="accent" (click)="buyInstrument(instruments.id, instruments.name, instruments.price)">Köpa</button>
+       <button mat-raised-button *ngIf="!isAdmin$" color="accent" (click)="buyInstrument(instruments.id, instruments.name, instruments.price)">Köpa</button>
       </td>
     </ng-container>
   
