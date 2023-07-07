@@ -26,8 +26,8 @@ export class LoginComponent  {
 
   ngAfterContentInit(): void {
     this.authService.isLoggedIn()
-    // .subscribe(res=> 
-    //  console.log("isLogin ngAfterContentInit", res ))   
+    .subscribe(res=> 
+     console.log("isLogin ngAfterContentInit", res ))   
   }
  
   login() {
